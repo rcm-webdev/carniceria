@@ -67,6 +67,16 @@ const Welcome = () => {
                 </div>
               </div>
             </div>
+            
+            {/* Announcement Link */}
+            <div className="mt-8">
+              <a 
+                href="/announcement" 
+                className="btn btn-warning btn-lg text-white hover:bg-yellow-500 transition-colors"
+              >
+                View Current Announcements
+              </a>
+            </div>
           </div>
         </div>
         
