@@ -75,18 +75,12 @@ const Welcome = () => {
 
           {/* Call to Action */}
           <div className="text-center mt-12">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/slideshow" 
-                className="inline-block bg-yellow-400 hover:bg-yellow-500 text-red-800 font-bold py-4 px-8 rounded-lg text-lg transition-colors shadow-lg"
-              >
-                🖼️ View Gallery
-              </a>
+            <div className="flex justify-center">
               <a 
                 href="/announcement" 
-                className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors shadow-lg"
+                className="inline-block bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-700 hover:to-orange-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
-                📢 Current Specials
+                🎥 View Digital Menu & Specials
               </a>
             </div>
           </div>
