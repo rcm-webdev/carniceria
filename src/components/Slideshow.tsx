@@ -24,8 +24,8 @@ const Slideshow: React.FC<SlideshowProps> = ({
   const [fadeClass, setFadeClass] = useState('fade-in');
   
   const slideshowRef = useRef<HTMLDivElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const progressRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<number | null>(null);
+  const progressRef = useRef<number | null>(null);
 
   // Progress bar animation
   const startProgress = useCallback(() => {
@@ -36,12 +36,12 @@ const Slideshow: React.FC<SlideshowProps> = ({
     const steps = interval / progressInterval;
     let currentStep = 0;
 
-    progressRef.current = setInterval(() => {
+    progressRef.current = window.setInterval(() => {
       currentStep++;
       setProgress((currentStep / steps) * 100);
       
       if (currentStep >= steps) {
-        if (progressRef.current) clearInterval(progressRef.current);
+        if (progressRef.current) window.clearInterval(progressRef.current);
       }
     }, progressInterval);
   }, [interval]);
@@ -50,7 +50,7 @@ const Slideshow: React.FC<SlideshowProps> = ({
   useEffect(() => {
     if (isPlaying && images.length > 1) {
       startProgress();
-      intervalRef.current = setInterval(() => {
+      intervalRef.current = window.setInterval(() => {
         setFadeClass('fade-out');
         setTimeout(() => {
           setCurrentSlide((prev) => (prev + 1) % images.length);
@@ -60,8 +60,8 @@ const Slideshow: React.FC<SlideshowProps> = ({
     }
 
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (progressRef.current) clearInterval(progressRef.current);
+      if (intervalRef.current) window.clearInterval(intervalRef.current);
+      if (progressRef.current) window.clearInterval(progressRef.current);
     };
   }, [isPlaying, interval, images.length, startProgress]);
 
