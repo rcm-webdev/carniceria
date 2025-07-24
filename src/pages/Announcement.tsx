@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Maximize, Minimize, Play, Pause } from 'lucide-react';
 
 const Announcement = () => {
@@ -6,6 +6,9 @@ const Announcement = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [showControls, setShowControls] = useState(true);
+  const [loadedSlides, setLoadedSlides] = useState<Set<number>>(new Set());
+  const [isLoading, setIsLoading] = useState(false);
+  const preloadRef = useRef<{ [key: number]: HTMLImageElement | HTMLVideoElement }>({});
 
   
   const slides = [
@@ -47,6 +50,57 @@ const Announcement = () => {
     }
   ];
 
+  // Preload function for images and videos
+  const preloadSlide = useCallback((slideIndex: number) => {
+    const slide = slides[slideIndex];
+    if (!slide || loadedSlides.has(slideIndex) || slide.type === 'text') return;
+
+    if (slide.type === 'image') {
+      const img = new Image();
+      img.onload = () => {
+        setLoadedSlides(prev => new Set([...prev, slideIndex]));
+        preloadRef.current[slideIndex] = img;
+      };
+      img.onerror = () => {
+        console.warn(`Failed to load image for slide ${slideIndex}`);
+      };
+      img.src = slide.content;
+    } else if (slide.type === 'video') {
+      const video = document.createElement('video');
+      video.onloadeddata = () => {
+        setLoadedSlides(prev => new Set([...prev, slideIndex]));
+        preloadRef.current[slideIndex] = video;
+      };
+      video.onerror = () => {
+        console.warn(`Failed to load video for slide ${slideIndex}`);
+      };
+      video.preload = 'metadata';
+      video.src = slide.content;
+    }
+  }, [slides, loadedSlides]);
+
+  // Preload current and next slides
+  useEffect(() => {
+    // Always preload current slide
+    preloadSlide(currentSlide);
+    
+    // Preload next slide for smooth transition
+    const nextSlide = (currentSlide + 1) % slides.length;
+    preloadSlide(nextSlide);
+    
+    // Preload previous slide as well
+    const prevSlide = (currentSlide - 1 + slides.length) % slides.length;
+    preloadSlide(prevSlide);
+  }, [currentSlide, preloadSlide, slides.length]);
+
+  // Initial preload of first few slides
+  useEffect(() => {
+    // Preload first 3 slides on component mount
+    for (let i = 0; i < Math.min(3, slides.length); i++) {
+      setTimeout(() => preloadSlide(i), i * 100);
+    }
+  }, [preloadSlide, slides.length]);
+
   // Fullscreen functions
   const enterFullscreen = useCallback(() => {
     if (document.documentElement.requestFullscreen) {
@@ -76,6 +130,29 @@ const Announcement = () => {
     }
   };
 
+  // Enhanced slide change with loading state
+  const changeSlide = useCallback((newSlideIndex: number) => {
+    const slide = slides[newSlideIndex];
+    if (slide.type !== 'text' && !loadedSlides.has(newSlideIndex)) {
+      setIsLoading(true);
+      preloadSlide(newSlideIndex);
+      
+      // Wait for slide to load before changing
+      const checkLoaded = () => {
+        if (loadedSlides.has(newSlideIndex)) {
+          setCurrentSlide(newSlideIndex);
+          setIsLoading(false);
+        } else {
+          setTimeout(checkLoaded, 50);
+        }
+      };
+      checkLoaded();
+    } else {
+      setCurrentSlide(newSlideIndex);
+      setIsLoading(false);
+    }
+  }, [slides, loadedSlides, preloadSlide]);
+
   // Listen for fullscreen changes
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -95,14 +172,15 @@ const Announcement = () => {
 
   // Auto-advance slides
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying || isLoading) return;
 
     const timer = setTimeout(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      const nextSlide = (currentSlide + 1) % slides.length;
+      changeSlide(nextSlide);
     }, slides[currentSlide].duration);
 
     return () => clearTimeout(timer);
-  }, [currentSlide, isPlaying, slides]);
+  }, [currentSlide, isPlaying, slides, changeSlide, isLoading]);
 
   // Hide controls after inactivity
   useEffect(() => {
@@ -144,10 +222,12 @@ const Announcement = () => {
           setIsPlaying(!isPlaying);
           break;
         case 'ArrowRight':
-          setCurrentSlide((prev) => (prev + 1) % slides.length);
+          const nextSlide = (currentSlide + 1) % slides.length;
+          changeSlide(nextSlide);
           break;
         case 'ArrowLeft':
-          setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+          const prevSlide = (currentSlide - 1 + slides.length) % slides.length;
+          changeSlide(prevSlide);
           break;
         case 'Escape':
           if (isFullscreen) exitFullscreen();
@@ -157,21 +237,97 @@ const Announcement = () => {
 
     document.addEventListener('keydown', handleKeyPress);
     return () => document.removeEventListener('keydown', handleKeyPress);
-  }, [isFullscreen, isPlaying, toggleFullscreen, exitFullscreen, slides.length]);
+  }, [isFullscreen, isPlaying, toggleFullscreen, exitFullscreen, slides.length, currentSlide, changeSlide]);
 
   const currentSlideData = slides[currentSlide];
+
+  // Loading component
+  const LoadingSpinner = () => (
+    <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+      <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white"></div>
+    </div>
+  );
+
+  // Optimized Image component with lazy loading
+  const OptimizedImage = ({ src, alt, className, onLoad }: { 
+    src: string; 
+    alt: string; 
+    className: string; 
+    onLoad?: () => void;
+  }) => {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    return (
+      <div className="relative w-full h-full">
+        <img
+          src={src}
+          alt={alt}
+          className={`${className} transition-opacity duration-300 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          onLoad={() => {
+            setImageLoaded(true);
+            onLoad?.();
+          }}
+          loading="eager"
+        />
+        {!imageLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-800">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  // Optimized Video component
+  const OptimizedVideo = ({ src, className, onLoad }: { 
+    src: string; 
+    className: string; 
+    onLoad?: () => void;
+  }) => {
+    const [videoLoaded, setVideoLoaded] = useState(false);
+
+    return (
+      <div className="relative w-full h-full">
+        <video
+          src={src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className={`${className} transition-opacity duration-300 ${
+            videoLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          onLoadedData={() => {
+            setVideoLoaded(true);
+            onLoad?.();
+          }}
+          preload="metadata"
+        />
+        {!videoLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-800">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className={`relative w-screen h-screen bg-gradient-to-b from-black via-[#EB5757] to-black overflow-hidden ${
       isFullscreen && !showControls ? 'cursor-none' : 'cursor-auto'
     }`}>
+      {/* Loading overlay */}
+      {isLoading && <LoadingSpinner />}
+
       {/* Main Content */}
       <div className="w-full h-full flex items-center justify-center">
         {currentSlideData.type === 'image' ? (
           <div className="relative w-full h-full">
-            <img
+            <OptimizedImage
               src={currentSlideData.content}
-              alt={currentSlideData.title}
+              alt={currentSlideData.title || 'Slide image'}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-primary opacity-70" />
@@ -185,12 +341,8 @@ const Announcement = () => {
           </div>
         ) : currentSlideData.type === 'video' ? (
           <div className="relative w-full h-full">
-            <video
+            <OptimizedVideo
               src={currentSlideData.content}
-              autoPlay
-              muted
-              loop
-              playsInline
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-primary opacity-70" />
@@ -275,11 +427,16 @@ const Announcement = () => {
         {slides.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-colors ${
+            onClick={() => changeSlide(index)}
+            className={`w-3 h-3 rounded-full transition-colors relative ${
               index === currentSlide ? 'bg-white' : 'bg-white/40'
             }`}
-          />
+          >
+            {/* Loading indicator for slide indicators */}
+            {!loadedSlides.has(index) && slides[index].type !== 'text' && (
+              <div className="absolute inset-0 rounded-full border-2 border-white/20 border-t-white animate-spin"></div>
+            )}
+          </button>
         ))}
       </div>
 
@@ -289,6 +446,7 @@ const Announcement = () => {
           <div>Press F or F11 for fullscreen</div>
           <div>Space to pause/play</div>
           <div>Arrow keys to navigate</div>
+          {isLoading && <div className="text-yellow-400">Loading slide...</div>}
         </div>
       )}
     </div>
