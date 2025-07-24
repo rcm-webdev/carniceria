@@ -75,12 +75,20 @@ const Welcome = () => {
 
           {/* Call to Action */}
           <div className="text-center mt-12">
-            <a 
-              href="/announcement" 
-              className="inline-block bg-yellow-400 hover:bg-yellow-500 text-red-800 font-bold py-4 px-8 rounded-lg text-lg transition-colors shadow-lg"
-            >
-              View Current Specials
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="/slideshow" 
+                className="inline-block bg-yellow-400 hover:bg-yellow-500 text-red-800 font-bold py-4 px-8 rounded-lg text-lg transition-colors shadow-lg"
+              >
+                🖼️ View Gallery
+              </a>
+              <a 
+                href="/announcement" 
+                className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors shadow-lg"
+              >
+                📢 Current Specials
+              </a>
+            </div>
           </div>
         </div>
       </div>
