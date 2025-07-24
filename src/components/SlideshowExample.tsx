@@ -1,4 +1,3 @@
-import React from 'react';
 import Slideshow from './Slideshow';
 
 // Example of how to use the Slideshow component with your own images
@@ -11,14 +10,6 @@ const SlideshowExample = () => {
   // import image3 from '../assets/images/image3.jpg';
   // 
   // const localImages = [image1, image2, image3];
-
-  // Option 2: Using images from the public folder
-  const publicImages = [
-    '/images/slide1.jpg',
-    '/images/slide2.jpg', 
-    '/images/slide3.jpg',
-    '/images/slide4.jpg'
-  ];
 
   // Option 3: Using external URLs (like Unsplash)
   const externalImages = [
