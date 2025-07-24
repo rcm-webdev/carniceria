@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Maximize, Minimize, Play, Pause, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Announcement = () => {
@@ -15,7 +15,7 @@ const Announcement = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<number | null>(null);
 
-  const slides = [
+  const slides = useMemo(() => [
     {
       id: 1,
       type: 'image',
@@ -55,7 +55,7 @@ const Announcement = () => {
       subtitle: 'Experience authentic Mexican flavors',
       duration: 7000
     }
-  ];
+  ], []);
 
   // Preload function for images and videos
   const preloadSlide = useCallback((slideIndex: number) => {

@@ -102,7 +102,7 @@ const Slideshow: React.FC<SlideshowProps> = ({
   }, []);
 
   // Navigation functions
-  const goToSlide = (index: number) => {
+  const goToSlide = useCallback((index: number) => {
     if (isPlaying) {
       setIsPlaying(false);
       setTimeout(() => setIsPlaying(true), 100);
@@ -112,19 +112,19 @@ const Slideshow: React.FC<SlideshowProps> = ({
       setCurrentSlide(index);
       setFadeClass('fade-in');
     }, 150);
-  };
+  }, [isPlaying]);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     goToSlide((currentSlide + 1) % images.length);
-  };
+  }, [currentSlide, images.length, goToSlide]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     goToSlide(currentSlide === 0 ? images.length - 1 : currentSlide - 1);
-  };
+  }, [currentSlide, images.length, goToSlide]);
 
-  const togglePlayPause = () => {
+  const togglePlayPause = useCallback(() => {
     setIsPlaying(!isPlaying);
-  };
+  }, [isPlaying]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -152,7 +152,7 @@ const Slideshow: React.FC<SlideshowProps> = ({
 
     document.addEventListener('keydown', handleKeyPress);
     return () => document.removeEventListener('keydown', handleKeyPress);
-  }, [currentSlide, isFullscreen, isPlaying]);
+  }, [currentSlide, isFullscreen, isPlaying, nextSlide, prevSlide, togglePlayPause]);
 
   if (images.length === 0) {
     return (

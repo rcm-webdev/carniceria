@@ -3,13 +3,7 @@
   themes: "light" --default, "caramellatte";
 }
 
-@font-face {
-  font-family: "Cooper-Black";
-  src: url("./assets/fonts/Cooper-Black-Regular.ttf");
-  font-weight: normal;
-  font-style: normal;
-}
-
 .font-cooper {
-  font-family: "Cooper-Black", sans-serif;
+  font-family: "Cooper Black", "Arial Black", sans-serif;
+  font-weight: 900;
 }
