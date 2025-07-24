@@ -27,10 +27,10 @@ const SlideshowPage = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            🥩 La Ranchera Market Gallery
+            🥩 La Ranchera Market - Announcements & Gallery
           </h1>
           <p className="text-xl text-yellow-200 max-w-2xl mx-auto mb-8">
-            Explore our delicious offerings and authentic Mexican cuisine
+            Explore our delicious offerings, latest announcements, and authentic Mexican cuisine
           </p>
         </div>
 
