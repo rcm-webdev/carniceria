@@ -1,132 +1,98 @@
 const Welcome = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-yellow-50">
+    <div className="min-h-screen bg-black text-white">
       {/* Navigation Header */}
-      <nav className="bg-white shadow-lg">
-        <div className="container mx-auto px-4 py-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-xl">🐂</span>
-              </div>
-              <div>
-                <span className="text-2xl font-bold text-gray-800">La Ranchera</span>
-                <div className="text-sm text-green-600 font-medium">Market</div>
+              <div className="text-2xl font-bold text-white tracking-wider">
+                LA RANCHERA
               </div>
             </div>
             
-            {/* Navigation Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="/" className="text-gray-700 hover:text-green-600 font-medium transition-colors">Home</a>
-              <a href="/slideshow" className="text-gray-700 hover:text-green-600 font-medium transition-colors">Gallery</a>
-              <a href="/announcement" className="text-gray-700 hover:text-green-600 font-medium transition-colors">Announcements</a>
-              <a href="#contact" className="text-gray-700 hover:text-green-600 font-medium transition-colors">Contact</a>
-            </div>
-            
-            {/* CTA Button */}
-            <a 
-              href="/slideshow"
-              className="bg-green-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors shadow-lg"
-            >
-              View Gallery
-            </a>
+            {/* Menu Button */}
+            <button className="border border-gray-600 px-6 py-2 text-sm tracking-wider hover:bg-white hover:text-black transition-colors">
+              MENU
+            </button>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-6">
-              <div className="inline-block bg-white px-4 py-2 rounded-full shadow-sm border border-green-200">
-                <span className="text-green-600 font-medium text-sm">NEW LATINO MARKET & RESTAURANT</span>
-              </div>
-              
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Welcome to <span className="text-green-600">La Ranchera</span><br />
-                <span className="text-red-600">Market</span>
-              </h1>
-              
-              <p className="text-gray-600 text-lg max-w-lg leading-relaxed">
-                Nuevo mercado latino/restaurant. Calidad en carnes sazonadas, verduras, abarrotes.
-                <br /><br />
-                <span className="font-medium text-gray-800">New latino market. Seasoning meats, produce, groceries. Top quality meats</span>
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a 
-                  href="/slideshow"
-                  className="bg-green-600 text-white px-8 py-4 rounded-lg font-medium hover:bg-green-700 transition-colors shadow-lg text-center"
-                >
-                  🎥 View Our Gallery →
-                </a>
-                <a 
-                  href="#products"
-                  className="border-2 border-green-600 text-green-600 px-8 py-4 rounded-lg font-medium hover:bg-green-600 hover:text-white transition-colors text-center"
-                >
-                  🛒 Our Products →
-                </a>
-              </div>
+      {/* Hero Section - La Ranchera Market */}
+      <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-gray-900 to-black">
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=1920&h=1080&fit=crop')"
+          }}
+        ></div>
+        
+        <div className="relative z-10 text-center px-6">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-wider">
+            <span className="block text-red-500">LA RANCHERA</span>
+            <span className="block text-yellow-400 text-5xl md:text-6xl lg:text-7xl mt-4">MARKET</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Authentic Mexican Market & Restaurant
+          </p>
+          <div className="mt-12">
+            <button className="border border-white px-8 py-3 text-sm tracking-wider hover:bg-white hover:text-black transition-colors">
+              EXPLORE
+            </button>
+          </div>
+        </div>
+      </section>
 
-              {/* Social Proof */}
-              <div className="flex items-center space-x-6 pt-4">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">5.1K</div>
-                  <div className="text-sm text-gray-500">Likes</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">5.2K</div>
-                  <div className="text-sm text-gray-500">Followers</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">94%</div>
-                  <div className="text-sm text-gray-500">Recommend</div>
-                </div>
+      {/* Meat Selection Hero Section */}
+      <section className="min-h-screen relative">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1588347818431-5a57b5cd7b0a?w=1920&h=1080&fit=crop')"
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-black/60"></div>
+        
+        <div className="relative z-10 h-full flex items-center">
+          <div className="container mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                  PREMIUM
+                  <span className="block text-red-500">MEAT</span>
+                  <span className="block text-yellow-400">SELECTION</span>
+                </h2>
+                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                  Hand-selected cuts of the finest quality meats, seasoned with traditional Mexican spices and prepared with generations of expertise.
+                </p>
+                <button className="border border-red-500 text-red-500 px-8 py-3 text-sm tracking-wider hover:bg-red-500 hover:text-white transition-colors">
+                  VIEW SELECTION →
+                </button>
               </div>
-            </div>
-            
-            {/* Right Content - Market Image */}
-            <div className="relative">
-              <div className="relative bg-gradient-to-br from-green-600 to-green-700 rounded-3xl p-8 text-white shadow-2xl">
-                {/* Decorative elements */}
-                <div className="absolute top-4 right-4 bg-yellow-400 text-green-800 px-3 py-1 rounded-full text-sm font-bold">
-                  Top Quality
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-black/70 p-6 backdrop-blur-sm border border-gray-700">
+                  <div className="text-3xl mb-4">🥩</div>
+                  <h3 className="text-xl font-bold mb-2">CARNE ASADA</h3>
+                  <p className="text-gray-400 text-sm">Premium marinated beef</p>
                 </div>
-                
-                {/* Market illustration */}
-                <div className="flex justify-center items-center h-96">
-                  <div className="text-center">
-                    {/* La Ranchera Logo Recreation */}
-                    <div className="relative w-48 h-48 mx-auto mb-6">
-                      <div className="w-full h-full bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-xl">
-                        <div className="text-center">
-                          <div className="text-6xl mb-2">🐂</div>
-                          <div className="text-green-800 font-bold text-lg">La Ranchera</div>
-                          <div className="text-green-700 font-medium text-sm">Market</div>
-                        </div>
-                      </div>
-                      <div className="absolute -top-2 -right-2 w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
-                        <span className="text-white text-2xl">🥩</span>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <div className="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm font-medium">
-                        🌮 Authentic Mexican Cuisine
-                      </div>
-                      <div className="block">
-                        <div className="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm font-medium mr-2">
-                          🥩 Premium Meats
-                        </div>
-                        <div className="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm font-medium">
-                          🥬 Fresh Produce
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="bg-black/70 p-6 backdrop-blur-sm border border-gray-700 mt-8">
+                  <div className="text-3xl mb-4">🌶️</div>
+                  <h3 className="text-xl font-bold mb-2">CHORIZO</h3>
+                  <p className="text-gray-400 text-sm">Spiced Mexican sausage</p>
+                </div>
+                <div className="bg-black/70 p-6 backdrop-blur-sm border border-gray-700">
+                  <div className="text-3xl mb-4">🐷</div>
+                  <h3 className="text-xl font-bold mb-2">CARNITAS</h3>
+                  <p className="text-gray-400 text-sm">Slow-cooked pork</p>
+                </div>
+                <div className="bg-black/70 p-6 backdrop-blur-sm border border-gray-700 mt-8">
+                  <div className="text-3xl mb-4">🐔</div>
+                  <h3 className="text-xl font-bold mb-2">POLLO</h3>
+                  <p className="text-gray-400 text-sm">Seasoned chicken</p>
                 </div>
               </div>
             </div>
@@ -134,186 +100,145 @@ const Welcome = () => {
         </div>
       </section>
 
-      {/* Products Showcase Section */}
-      <section id="products" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Specialties</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              From seasoned meats to fresh produce, we bring you the authentic taste of Mexico
+      {/* Restaurant Section */}
+      <section className="min-h-screen relative">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&h=1080&fit=crop')"
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-black/70"></div>
+        
+        <div className="relative z-10 h-full flex items-center">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-5xl md:text-7xl font-bold mb-8">
+                AUTHENTIC
+                <span className="block text-yellow-400">RESTAURANT</span>
+              </h2>
+              <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
+                Experience the true flavors of Mexico in our traditional restaurant. From fresh tortillas made daily to slow-cooked specialties passed down through generations.
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-8 mb-12">
+                <div className="text-center">
+                  <div className="text-4xl mb-4">🌮</div>
+                  <h3 className="text-2xl font-bold mb-2">TACOS</h3>
+                  <p className="text-gray-400">Fresh handmade tortillas</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl mb-4">🍲</div>
+                  <h3 className="text-2xl font-bold mb-2">POZOLE</h3>
+                  <p className="text-gray-400">Traditional Mexican soup</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl mb-4">🫔</div>
+                  <h3 className="text-2xl font-bold mb-2">TAMALES</h3>
+                  <p className="text-gray-400">Homestyle comfort food</p>
+                </div>
+              </div>
+              
+              <button className="border border-yellow-400 text-yellow-400 px-8 py-3 text-sm tracking-wider hover:bg-yellow-400 hover:text-black transition-colors">
+                RESERVATION →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Announcements Section */}
+      <section className="min-h-screen bg-gradient-to-br from-gray-900 to-black relative">
+        <div className="container mx-auto px-6 py-20">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-7xl font-bold mb-8">
+              <span className="text-red-500">LATEST</span>
+              <span className="block text-white">ANNOUNCEMENTS</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Stay updated with our latest offerings, events, and special promotions
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Carnes Sazonadas */}
-            <div className="bg-gradient-to-br from-red-500 to-red-600 text-white rounded-2xl p-6 relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="relative z-10">
-                <h3 className="text-lg font-bold mb-2">ESPECIALIDAD</h3>
-                <h2 className="text-2xl font-bold mb-4">Carnes Sazonadas</h2>
-                <div className="w-20 h-20 bg-white bg-opacity-20 rounded-lg mb-4 flex items-center justify-center">
-                  <span className="text-3xl">🥩</span>
-                </div>
-                <p className="text-red-100 text-sm">Seasoned meats prepared with traditional recipes</p>
-              </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Announcement 1 */}
+            <div className="bg-black/50 border border-gray-700 p-8 backdrop-blur-sm">
+              <div className="text-red-500 text-sm tracking-wider mb-4">NEW ARRIVAL</div>
+              <h3 className="text-2xl font-bold mb-4">Fresh Seafood Fridays</h3>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                Every Friday, we bring you the freshest catch from the Gulf. Premium shrimp, fish, and more.
+              </p>
+              <div className="text-sm text-gray-500">December 2024</div>
             </div>
             
-            {/* Fresh Produce */}
-            <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-sm font-medium mb-2">FRESH DAILY</h3>
-              <h2 className="text-xl font-bold mb-4">Verduras Frescas</h2>
-              <div className="w-full h-24 bg-white bg-opacity-20 rounded-lg mb-4 flex items-center justify-center">
-                <span className="text-3xl">🥬</span>
-              </div>
-              <p className="text-green-100 text-sm">Fresh vegetables and produce</p>
+            {/* Announcement 2 */}
+            <div className="bg-black/50 border border-gray-700 p-8 backdrop-blur-sm">
+              <div className="text-yellow-400 text-sm tracking-wider mb-4">SPECIAL EVENT</div>
+              <h3 className="text-2xl font-bold mb-4">Holiday Catering</h3>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                Book your holiday parties with us. Traditional Mexican dishes for your special celebrations.
+              </p>
+              <div className="text-sm text-gray-500">December 2024</div>
             </div>
             
-            {/* Groceries */}
-            <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-sm font-medium mb-2">ABARROTES</h3>
-              <h2 className="text-xl font-bold mb-4">Groceries</h2>
-              <div className="w-full h-24 bg-white bg-opacity-20 rounded-lg mb-4 flex items-center justify-center">
-                <span className="text-3xl">🛒</span>
-              </div>
-              <p className="text-yellow-100 text-sm">Complete grocery selection</p>
+            {/* Announcement 3 */}
+            <div className="bg-black/50 border border-gray-700 p-8 backdrop-blur-sm">
+              <div className="text-green-500 text-sm tracking-wider mb-4">GRAND OPENING</div>
+              <h3 className="text-2xl font-bold mb-4">Extended Hours</h3>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                We're now open until 10 PM to serve you better. More time to enjoy authentic Mexican cuisine.
+              </p>
+              <div className="text-sm text-gray-500">December 2024</div>
             </div>
-            
-            {/* Restaurant */}
-            <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-sm font-medium mb-2">RESTAURANT</h3>
-              <h2 className="text-2xl font-bold mb-4">Comida Casera</h2>
-              <div className="w-full h-16 bg-white bg-opacity-20 rounded-lg mb-4 flex items-center justify-center">
-                <span className="text-2xl">🍽️</span>
-              </div>
-              <p className="text-orange-100 text-sm">Authentic home-style cooking</p>
-            </div>
+          </div>
+          
+          <div className="text-center mt-16">
+            <button className="border border-white px-8 py-3 text-sm tracking-wider hover:bg-white hover:text-black transition-colors">
+              VIEW ALL ANNOUNCEMENTS →
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-gradient-to-br from-green-50 to-yellow-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-green-600 font-medium mb-2">WHY CHOOSE US</p>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Quality You Can Trust
-            </h2>
+      {/* Footer */}
+      <footer className="bg-black border-t border-gray-800 py-12">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-2xl font-bold mb-4">LA RANCHERA MARKET</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Your authentic Mexican market and restaurant experience in the heart of the community.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-bold mb-4">CONTACT</h4>
+              <div className="space-y-2 text-gray-400">
+                <p>📍 123 Market Street</p>
+                <p>📞 (555) 123-4567</p>
+                <p>🕒 Mon-Sun: 8AM-10PM</p>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-lg font-bold mb-4">FOLLOW US</h4>
+              <div className="flex space-x-4">
+                <button className="w-10 h-10 border border-gray-600 flex items-center justify-center hover:bg-white hover:text-black transition-colors">
+                  f
+                </button>
+                <button className="w-10 h-10 border border-gray-600 flex items-center justify-center hover:bg-white hover:text-black transition-colors">
+                  ig
+                </button>
+                <button className="w-10 h-10 border border-gray-600 flex items-center justify-center hover:bg-white hover:text-black transition-colors">
+                  tw
+                </button>
+              </div>
+            </div>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left - Features List */}
-            <div className="space-y-6">
-              <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                    <span className="text-2xl">🥩</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900">Top Quality Meats</h3>
-                    <p className="text-gray-600">Premium cuts and traditional seasoning</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                    <span className="text-2xl">🌮</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900">Authentic Mexican</h3>
-                    <p className="text-gray-600">Traditional recipes and flavors</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                    <span className="text-2xl">⭐</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900">94% Recommend</h3>
-                    <p className="text-gray-600">Trusted by our community (25 Reviews)</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="text-2xl">🏪</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900">Market & Restaurant</h3>
-                    <p className="text-gray-600">Complete shopping and dining experience</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Right - Featured Image */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-slate-700 to-slate-900 rounded-3xl p-8 h-96 flex items-center justify-center shadow-2xl">
-                <div className="text-center text-white">
-                  <div className="w-24 h-24 bg-green-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
-                    <span className="text-4xl">🏪</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Visit Our Store</h3>
-                  <p className="text-gray-300 mb-4">Experience authentic Mexican market culture</p>
-                  <a 
-                    href="/slideshow"
-                    className="inline-block bg-green-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors"
-                  >
-                    See Our Gallery
-                  </a>
-                </div>
-              </div>
-            </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+            © 2024 La Ranchera Market. All rights reserved.
           </div>
         </div>
-      </section>
-
-      {/* Call to Action Section */}
-      <section id="contact" className="py-16 bg-gradient-to-r from-green-600 to-green-700 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-4">Visit La Ranchera Market Today</h2>
-          <p className="text-green-100 mb-8 max-w-2xl mx-auto text-lg">
-            Experience authentic Mexican flavors and quality meats. Join our community of 5,000+ satisfied customers 
-            who trust us for their daily groceries and special occasions.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="tel:+1234567890" 
-              className="bg-white text-green-600 px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-colors shadow-lg"
-            >
-              📞 Call Us Today
-            </a>
-            <a 
-              href="/slideshow" 
-              className="border-2 border-white text-white px-8 py-4 rounded-lg font-medium hover:bg-white hover:text-green-600 transition-colors"
-            >
-              🎥 View Our Announcements & Gallery
-            </a>
-          </div>
-          
-          {/* Social Media Links */}
-          <div className="mt-8 pt-8 border-t border-green-500">
-            <p className="text-green-200 mb-4">Follow us on social media</p>
-            <div className="flex justify-center space-x-4">
-              <a href="#" className="bg-white bg-opacity-20 p-3 rounded-full hover:bg-opacity-30 transition-colors">
-                <span className="text-xl">📘</span>
-              </a>
-              <a href="#" className="bg-white bg-opacity-20 p-3 rounded-full hover:bg-opacity-30 transition-colors">
-                <span className="text-xl">📷</span>
-              </a>
-              <a href="#" className="bg-white bg-opacity-20 p-3 rounded-full hover:bg-opacity-30 transition-colors">
-                <span className="text-xl">🐦</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      </footer>
     </div>
   )
 }
