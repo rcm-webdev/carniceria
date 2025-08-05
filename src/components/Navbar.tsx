@@ -1,3 +1,5 @@
+import {Link} from 'react-router'
+
 const Navbar = () => {
     return (
         <nav className=" fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
@@ -11,9 +13,11 @@ const Navbar = () => {
             </div>
             
             {/* Menu Button */}
+            <Link to="/announcement">
             <button className="border border-gray-600 px-4 sm:px-6 py-2 text-xs sm:text-sm tracking-wider hover:bg-white hover:text-black transition-colors">
-              MENU
-            </button>
+              ANNOUNCEMENTS
+            </button></Link>
+            
           </div>
         </div>
       </nav>

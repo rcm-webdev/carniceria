@@ -23,7 +23,7 @@ const Welcome = () => {
             <span className="">MARKET</span>
           </h1>
           <p className="text-accent-content text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed px-4">
-            Authentic Mexican Market & Restaurant
+            Market & Restaurant
           </p>
           <div className="mt-8 sm:mt-12">
             <button className="border border-white px-6 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm tracking-wider hover:bg-white hover:text-black transition-colors">
