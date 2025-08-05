@@ -3,13 +3,14 @@
   themes: "light" --default, "caramellatte";
 }
 
-@font-face {
-  font-family: "Cooper-Black";
-  src: url("./assets/fonts/Cooper-Black-Regular.ttf");
+@font-face{
+  font-family: "Stardom-Regular";
+  src: url("./assets/fonts/Stardom-Regular.woff");
   font-weight: normal;
   font-style: normal;
 }
 
-.font-cooper {
-  font-family: "Cooper-Black", sans-serif;
+.font-stardom {
+  font-family: "Stardom-Regular", sans-serif;
 }
+

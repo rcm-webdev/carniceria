@@ -1,24 +1,11 @@
+import Navbar from "../components/Navbar"
+import Subgrid from "../components/Grid"
+
 const Welcome = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation Header */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
-        <div className="container mx-auto px-4 sm:px-6 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="text-lg sm:text-xl md:text-2xl font-bold text-white tracking-wider">
-                LA RANCHERA
-              </div>
-            </div>
-            
-            {/* Menu Button */}
-            <button className="border border-gray-600 px-4 sm:px-6 py-2 text-xs sm:text-sm tracking-wider hover:bg-white hover:text-black transition-colors">
-              MENU
-            </button>
-          </div>
-        </div>
-      </nav>
+     <Navbar/>
 
       {/* Hero Section - La Ranchera Market */}
       <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-gray-900 to-black">
@@ -26,16 +13,16 @@ const Welcome = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=1920&h=1080&fit=crop')"
+            backgroundImage: "url('https://images.unsplash.com/photo-1615937662601-4724eceda00f?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
           }}
         ></div>
         
-        <div className="relative z-10 text-center px-4 sm:px-6">
-          <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-wider">
-            <span className="block text-red-500">LA RANCHERA</span>
-            <span className="block text-yellow-400 text-3xl sm:text-5xl md:text-6xl lg:text-7xl mt-2 sm:mt-4">MARKET</span>
+        <div className="relative z-10 text-center px-4 sm:px-6 bg-black/60 py-4 rounded-2xl">
+          <h1 className="font-stardom text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-wider">
+            <span className="">LA RANCHERA</span> <br />
+            <span className="">MARKET</span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed px-4">
+          <p className="text-accent-content text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed px-4">
             Authentic Mexican Market & Restaurant
           </p>
           <div className="mt-8 sm:mt-12">
@@ -48,56 +35,7 @@ const Welcome = () => {
 
       {/* Meat Selection Hero Section */}
       <section className="min-h-screen relative">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1588347818431-5a57b5cd7b0a?w=1920&h=1080&fit=crop')"
-          }}
-        ></div>
-        <div className="absolute inset-0 bg-black/60"></div>
-        
-        <div className="relative z-10 h-full flex items-center py-16 sm:py-20">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
-                  PREMIUM
-                  <span className="block text-red-500">MEAT</span>
-                  <span className="block text-yellow-400">SELECTION</span>
-                </h2>
-                <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed px-4 lg:px-0">
-                  Hand-selected cuts of the finest quality meats, seasoned with traditional Mexican spices and prepared with generations of expertise.
-                </p>
-                <button className="border border-red-500 text-red-500 px-6 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm tracking-wider hover:bg-red-500 hover:text-white transition-colors">
-                  VIEW SELECTION →
-                </button>
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 lg:mt-0">
-                <div className="bg-black/70 p-4 sm:p-6 backdrop-blur-sm border border-gray-700">
-                  <div className="text-2xl sm:text-3xl mb-3 sm:mb-4">🥩</div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2">CARNE ASADA</h3>
-                  <p className="text-gray-400 text-xs sm:text-sm">Premium marinated beef</p>
-                </div>
-                <div className="bg-black/70 p-4 sm:p-6 backdrop-blur-sm border border-gray-700 sm:mt-8">
-                  <div className="text-2xl sm:text-3xl mb-3 sm:mb-4">🌶️</div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2">CHORIZO</h3>
-                  <p className="text-gray-400 text-xs sm:text-sm">Spiced Mexican sausage</p>
-                </div>
-                <div className="bg-black/70 p-4 sm:p-6 backdrop-blur-sm border border-gray-700">
-                  <div className="text-2xl sm:text-3xl mb-3 sm:mb-4">🐷</div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2">CARNITAS</h3>
-                  <p className="text-gray-400 text-xs sm:text-sm">Slow-cooked pork</p>
-                </div>
-                <div className="bg-black/70 p-4 sm:p-6 backdrop-blur-sm border border-gray-700 sm:mt-8">
-                  <div className="text-2xl sm:text-3xl mb-3 sm:mb-4">🐔</div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2">POLLO</h3>
-                  <p className="text-gray-400 text-xs sm:text-sm">Seasoned chicken</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Subgrid/>
       </section>
 
       {/* Restaurant Section */}
